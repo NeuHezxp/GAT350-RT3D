@@ -7,6 +7,10 @@ namespace nc
 {
     bool World01::Initialize()
     {
+	    for (int i = 0; i < 10; ++i)
+	    {
+        m_positions.push_back({ randomf(-1,1),randomf(-1,1) });
+	    }
         return true;
     }
 
@@ -16,22 +20,42 @@ namespace nc
 
     void World01::Update(float dt)
     {
+        m_angle += 90 * dt;
+        //added movement
+        m_position.x += ENGINE.GetSystem<InputSystem>()->GetKeyDown(SDL_SCANCODE_D) ? dt : 0;
+        m_position.x += ENGINE.GetSystem<InputSystem>()->GetKeyDown(SDL_SCANCODE_A) ? -dt : 0;
+        m_time += dt;
     }
 
     void World01::Draw(Renderer& renderer)
     {
         // pre-render
-        renderer.SetColor(0, 0, 0, 0);
         renderer.BeginFrame();
 
-        // render
-        renderer.SetColor(random(255), (random(255)), 255, 255);
-        renderer.DrawPoint(random(renderer.GetWidth()), random(renderer.GetHeight()));
+            // render
+            glPushMatrix();
+            //moving triangle
+            ///could m_positions[i] to add multiple objects
+            glTranslatef(m_position.x, m_position.y, 0);
+            glRotatef(m_angle, 1, 1, .5);
+            glScalef((sin(m_time * 2) + 1) * .5f, 1, 1);
 
-        for (int i = 0; i < 1000; ++i)
-        {
-            renderer.DrawPoint(random(renderer.GetWidth()), random(renderer.GetHeight()));
-        }
+            glBegin(GL_QUADS);
+
+            glColor3f(1, 0, 0);
+            glVertex2f(-0.5f, -0.5);
+
+            glVertex4f(-.5f, .5f, 1, .5f);
+
+            glColor3f(1, 1, 0);
+            glVertex2f(0.0f, 0.0f);
+
+            glColor3f(0, 1, 0);
+            glVertex2f(0.5f, -0.5f);
+        
+        glEnd();
+        //takes matrix and pushes off
+        glPopMatrix();
 
         // post-render
         renderer.EndFrame();
