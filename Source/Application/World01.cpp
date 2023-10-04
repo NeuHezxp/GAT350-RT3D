@@ -57,6 +57,7 @@ namespace nc
         //takes matrix and pushes off
         glPopMatrix();
 
+
         // post-render
         renderer.EndFrame();
     }
