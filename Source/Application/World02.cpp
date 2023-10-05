@@ -49,21 +49,18 @@ namespace nc
         ///vertex Data
         // Define an array of float values representing vertex positions in 3D space.
         float positionData[] = {
-            -0.8f, -0.8f, 0.0f,  // Vertex 1: x, y, z
-             0.8f, -0.8f, 0.0f,  // Vertex 2: x, y, z
-             0.8f,  0.8f, 0.0f   // Vertex 3: x, y, z
+		-0.8f, -0.8f, 0.0f,  // Vertex 1: BottoSSm-left
+		-0.8f,  0.8f, 0.0f,  // Vertex 2: Top-left
+		 0.8f, -0.8f, 0.0f,  // Vertex 3: Bottom-right
+		 0.8f,  0.8f, 0.0f   // Vertex 4: Top-right
         };
-        float positionData1[] = {
-            -1.0f, -0.8f, 0.0f,  // Vertex 1: x, y, z
-             1.0f, -0.8f, 0.0f,  // Vertex 2: x, y, z
-             1.0f,  0.8f, 0.0f   // Vertex 3: x, y, z
-        };
+
 
         float colorData[] =
         {
-            0.0f, 0.0f, 0.0f,
-            0.0f, 1.0f, 0.0f,
-            -0.8f, 0.0f, 1.0f
+            1.0f, 1.0f, 1.0f,
+            1.0f, 1.0f, 0.5f,
+            0.8f, 0.5f, -1.0f
         };
 
         // Declare an unsigned integer to store the Vertex Buffer Object (VBO) identifier.
@@ -126,8 +123,8 @@ namespace nc
 
     	/// render
         glBindVertexArray(m_vao);
-        glDrawArrays(GL_TRIANGLES, 0, 3);
-        glDrawArrays(GL_TRIANGLES, 1, 3);
+        glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+
 
 
         // post-render
