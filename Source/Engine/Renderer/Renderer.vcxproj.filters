@@ -25,6 +25,12 @@
     <ClCompile Include="..\..\ThirdParty\glad\src\glad.c">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="Program.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Renderer.h">
@@ -42,5 +48,7 @@
     <ClInclude Include="Texture.h">
       <Filter>Source</Filter>
     </ClInclude>
+    <ClInclude Include="Program.h" />
+    <ClInclude Include="Shader.h" />
   </ItemGroup>
 </Project>

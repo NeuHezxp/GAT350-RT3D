@@ -5,6 +5,8 @@
 #include <memory>
 #include <string>
 
+#include "Core/Logger.h"
+
 #define GET_RESOURCE(type, filename, ...) nc::ResourceManager::Instance().Get<type>(filename, __VA_ARGS__)
 
 namespace nc
