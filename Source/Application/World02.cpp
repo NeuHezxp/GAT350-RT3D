@@ -4,10 +4,11 @@
 
 #include "Input/InputSystem.h"
 
-#define INTERLEAVE
-
+//#define INTERLEAVE
+#define INDEX 
 namespace nc
 {
+    ///vertex Buffer world
     bool World02::Initialize()
     {
         ///Shaders!!!
@@ -47,13 +48,14 @@ namespace nc
         glUseProgram(program);
 
 #ifdef INTERLEAVE
+
         ///vertex Data
        // Define an array of float values representing vertex positions in 3D space.
         float vertexData[] = {
-        -0.8f, -0.8f, 0.0f, 1.0f, 1.0f, 1.0f, // Vertex 1: Bottom-left
-        -0.8f,  0.8f, 0.0f, 1.0f, 1.0f, 0.5f,// Vertex 2: Top-left
-         0.8f, -0.8f, 0.0f, 0.8f, 0.5f, -1.0f, // Vertex 3: Bottom-right
-         0.8f,  0.8f, 0.0f, 1.0f,1.0f,1.0f// Vertex 4: Top-right
+        -0.8f, -0.8f, 0.0f, 1.0f, 1.0f,  1.0f, 
+        -0.8f,  0.8f, 0.0f, 1.0f, 1.0f,  0.5f,
+         0.8f, -0.8f, 0.0f, 0.8f, 0.5f, -1.0f, 
+         0.8f,  0.8f, 0.0f, 1.0f, 1.0f,  1.0f
         };
 
 
@@ -87,6 +89,57 @@ namespace nc
         //// Define how the data for that attribute is retrieved from the VBO.
         glVertexAttribFormat(1, 3, GL_FLOAT, GL_FALSE, 3*sizeof(GLfloat));
         glVertexAttribBinding(1, 0);
+
+#elif defined(INDEX)
+///vertex Data
+     // Define an array of float values representing vertex positions in 3D space.
+        const float vertexData[] = {
+            -1.0f,  1.0f, 0.0f, 1.0f, 0.0f, 0.0f, // top-left
+             1.0f,  1.0f, 0.0f, 0.0f, 1.0f, 0.0f, // top-right
+             1.0f, -1.0f, 0.0f, 0.0f, 0.0f, 1.0f, // bottom-right
+            -1.0f, -1.0f, 0.0f, 1.0f, 1.0f, 1.0f  // bottom-left
+        };
+        GLuint incdices[] =
+        {
+            0,1,2,
+            2,3,0
+
+        };
+        ///vertex buffer object
+// Declare an unsigned integer to store the Vertex Buffer Object (VBO) identifier. // Handle
+GLuint vbo;
+// Generate a VBO and get its identifier.
+glGenBuffers(1, &vbo);
+// Bind the VBO to the GL_ARRAY_BUFFER target.
+glBindBuffer(GL_ARRAY_BUFFER, vbo);
+// Allocate memory and store the vertex data into the VBO.
+glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
+    	///Index buffer Object
+GLuint ibo;
+glGenBuffers(1, &ibo);
+glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
+glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(incdices),incdices, GL_STATIC_DRAW);
+
+///Vertex Array Object
+// Generate a VAO and get its identifier.
+glGenVertexArrays(1, &m_vao);
+// Bind the VAO to define what data the shader program will use.
+glBindVertexArray(m_vao);
+glBindVertexBuffer(0, vbo, 0, 6 * sizeof(GLfloat));
+glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
+
+///Position
+// Enable the first attribute of the vertex shader (usually position).
+glEnableVertexAttribArray(0); // First channel index 0
+// Define how the data for that attribute is retrieved from the VBO.
+glVertexAttribFormat(0, 3, GL_FLOAT, GL_FALSE, 0);
+glVertexAttribBinding(0, 0);
+
+///Color
+glEnableVertexAttribArray(1); // First channel index 0
+//// Define how the data for that attribute is retrieved from the VBO.
+glVertexAttribFormat(1, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat));
+glVertexAttribBinding(1, 0);
 
 #else
 
@@ -168,7 +221,12 @@ namespace nc
 
     	/// render
         glBindVertexArray(m_vao);
+#ifdef INDEX
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT,0); //object drawing, number of vertices, datatype of array, pointer
+#else
+
         glDrawArrays(GL_TRIANGLE_STRIP, 0, 4); // 0 is start and 4 is the amount of vertices drawn
+#endif
 
 
 
