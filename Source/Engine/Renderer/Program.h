@@ -8,7 +8,7 @@
 namespace nc
 {
 	class Shader;
-
+	/// Holds shader program information
 	// Program class for linking shaders and setting uniforms.
 	class Program : public Resource
 	{

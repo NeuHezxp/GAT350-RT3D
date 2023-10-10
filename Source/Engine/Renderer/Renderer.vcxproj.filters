@@ -16,9 +16,6 @@
     <ClCompile Include="Font.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="Text.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
     <ClCompile Include="Texture.cpp">
       <Filter>Source</Filter>
     </ClCompile>
@@ -42,13 +39,14 @@
     <ClInclude Include="Font.h">
       <Filter>Source</Filter>
     </ClInclude>
-    <ClInclude Include="Text.h">
-      <Filter>Source</Filter>
-    </ClInclude>
     <ClInclude Include="Texture.h">
       <Filter>Source</Filter>
     </ClInclude>
-    <ClInclude Include="Program.h" />
-    <ClInclude Include="Shader.h" />
+    <ClInclude Include="Program.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>Source</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -125,18 +125,17 @@ namespace nc
 		glm::mat4 position = glm::translate(glm::mat4{ 1 }, m_position); //if the parentheses are confusing, make em brackets
 		glm::mat4 rotation = glm::rotate(glm::mat4{ 1 }, glm::radians(m_angle), glm::vec3{ 0, 0, 1 });
 		glm::mat4 model = position * rotation; //make model = position, which was the PREVIOUS mat4 model
-		GLint uniform = glGetUniformLocation(m_program->m_program, "model");
-		glUniformMatrix4fv(uniform, 1, GL_FALSE, glm::value_ptr(model));
+		m_program->SetUniform("model", model);
+
 
 		///view matrix 
 		glm::mat4 view = glm::lookAt(glm::vec3{ 0, 4, 5 }, glm::vec3{ 0, 0, 0 }, glm::vec3{ 0, 1, 0 }); //make the -5 a 5 or else itll be weird!!!
-		uniform = glGetUniformLocation(m_program->m_program, "view");
-		glUniformMatrix4fv(uniform, 1, GL_FALSE, glm::value_ptr(view));
+		m_program->SetUniform("view", view);
 
 		///projection
 		glm::mat4 projection = glm::perspective(glm::radians(70.0f), 800.0f / 600.0f, 0.01f, 100.0f);
-		uniform = glGetUniformLocation(m_program->m_program, "projection");
-		glUniformMatrix4fv(uniform, 1, GL_FALSE, glm::value_ptr(projection));
+		m_program->SetUniform("projection", projection);
+		
 	}
 
 	void World03::Draw(Renderer& renderer)
