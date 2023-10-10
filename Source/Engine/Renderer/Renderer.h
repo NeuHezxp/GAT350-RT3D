@@ -4,6 +4,7 @@
 #include "Model.h"
 #include "Texture.h"
 #include "Shader.h"
+#include "Gui.h"
 #include "Program.h"
 
 #include <glad/include/glad/glad.h>
@@ -39,6 +40,7 @@ namespace nc
 
 		friend class Text;
 		friend class Texture;
+		friend class Gui;
 
 	private:
 		int m_width = 0;
