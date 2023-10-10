@@ -51,7 +51,7 @@ namespace nc
 
 		return result;
 	}
-
+	
 	inline Matrix33 Matrix33::operator*(const Matrix33& mx)
 	{
 		// | 00 01 02 |   | 00 01 02 |
