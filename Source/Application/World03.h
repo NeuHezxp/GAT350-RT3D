@@ -18,11 +18,16 @@ namespace nc
 	private:
 		float m_time;
 		float m_speed = 5;
-		
+
+		float m_uvOffsetX = 0.0f;
+		float m_uvOffsetY = 0.0f;
+		float m_uvtilesetX = 0.0f;
+		float m_uvtilesetY = 0.0f;
 
 		Transform m_transform;
-		
-		GLuint m_vao;
+
 		res_t<Program> m_program;
+		res_t<Texture> m_texture;
+		res_t<VertexBuffer> m_vertexBuffer;
 	};
 }
