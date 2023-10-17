@@ -8,6 +8,9 @@
     <Filter Include="Source\ImGui">
       <UniqueIdentifier>{4e3bc555-af56-4f52-8ddc-87b045e82063}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Material">
+      <UniqueIdentifier>{3976f3a9-601c-43c9-8d21-f3f35cf6c2ad}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Renderer.cpp">
@@ -58,6 +61,9 @@
     <ClCompile Include="VertexBuffer.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="Material.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Renderer.h">
@@ -84,5 +90,13 @@
     <ClInclude Include="VertexBuffer.h">
       <Filter>Source</Filter>
     </ClInclude>
+    <ClInclude Include="Material.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\Build\Assets\Material\quad.mtrl">
+      <Filter>Source\Material</Filter>
+    </None>
   </ItemGroup>
 </Project>

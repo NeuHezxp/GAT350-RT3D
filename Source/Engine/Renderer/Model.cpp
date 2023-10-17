@@ -57,7 +57,7 @@ namespace nc
 
 	void Model::Draw(Renderer& renderer, const Transform& transform)
 	{
-		
+		//
 	}
 
 	float Model::GetRadius()
