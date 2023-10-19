@@ -1,6 +1,6 @@
 {
   "program":"shaders/lit_texture.prog",
-  "textures": [ "textures/spot_diffuse.png" ],
+  "textures": [ "textures/chickito uv.png" ],
   "color":[
       1,
       1,

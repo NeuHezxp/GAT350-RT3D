@@ -221,6 +221,7 @@ xcopy "$(ThirdPartyDir)assimp\lib$(Configuration)*.dll" "$(SolutionDir)Build" /Y
     <ClInclude Include="VertexBuffer.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\..\Build\Assets\materials\grid.mtrl" />
     <None Include="..\..\..\Build\Assets\Material\quad.mtrl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

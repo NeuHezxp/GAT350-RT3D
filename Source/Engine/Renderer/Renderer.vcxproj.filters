@@ -98,5 +98,8 @@
     <None Include="..\..\..\Build\Assets\Material\quad.mtrl">
       <Filter>Source\Material</Filter>
     </None>
+    <None Include="..\..\..\Build\Assets\materials\grid.mtrl">
+      <Filter>Source\Material</Filter>
+    </None>
   </ItemGroup>
 </Project>
