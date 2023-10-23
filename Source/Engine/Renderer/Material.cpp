@@ -46,8 +46,9 @@ namespace nc
 		m_program->SetUniform("material.diffuse", diffuse);
 		m_program->SetUniform("material.specular", specular);
 		m_program->SetUniform("material.shininess", shininess);
-		m_program->SetUniform("material.tiling", tiling);
-		m_program->SetUniform("material.offset", offset);
+		m_program->SetUniform("tiling", tiling);
+		m_program->SetUniform("offset", offset);
+
 
 		for (size_t i = 0; i < m_textures.size(); i++)
 		{
