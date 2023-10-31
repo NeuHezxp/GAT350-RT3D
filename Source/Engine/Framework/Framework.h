@@ -15,6 +15,8 @@
 
 #include "Components/CollisionComponent.h"
 
+#include "Components/CameraComponent.h"
+
 #include "Components/LightComponent.h"
 
 #include "Factory.h"

@@ -1,5 +1,6 @@
 #include "Scene.h"
 
+#include "Components/CameraComponent.h"
 #include "Components/LightComponent.h"
 #include "Framework/Components/CollisionComponent.h"
 
@@ -38,6 +39,15 @@ namespace nc
 				lights.push_back(component);
 			}
 		}
+		// get camera component
+		CameraComponent* camera = nullptr;
+		for (auto& actor : m_actors)
+		{
+			if (!actor->active) continue;
+
+			camera = actor->GetComponent<CameraComponent>();
+			continue;
+		}
 
 		// get all shader programs in the resource system
 		auto programs = ResourceManager::Instance().GetAllOfType<Program>();
@@ -47,7 +57,7 @@ namespace nc
 			program->Use();
 
 			// set camera in shader program
-			//if (camera) camera->SetProgram(program);
+			if (camera) camera->SetProgram(program);
 
 			// set lights in shader program
 			int index = 0;

@@ -9,6 +9,8 @@
 
 using namespace std;
 
+
+
 int main(int argc, char* argv[])
 {
 	INFO_LOG("Initialize Engine...")
@@ -21,6 +23,7 @@ int main(int argc, char* argv[])
 
 	auto world = make_unique<nc::World05>(); /// chooses what world to use
 	world->Initialize();
+
 
 	// main loop
 	bool quit = false;
