@@ -49,16 +49,16 @@ namespace nc
 	{
 		// set view matrix with glm::lookAt function
 		// view = glm::lookAt(<parameters>)
-		view = glm::lookAt(m_owner->transform.position,(m_owner->transform.position + m_owner->transform.Forward()),up);
-		
+		//view = glm::lookAt(m_owner->transform.position,(m_owner->transform.position + m_owner->transform.Forward()),up);
+		view = glm::lookAt(eye, center, up);
 	}
 
 	void CameraComponent::SetProgram(res_t<Program> program)
 	{
 		// set program uniform for "view" with view matrix
-		program->SetUniform("view", &view);
+		program->SetUniform("view", view);
 		// set program uniform for "projection" with projection matrix
-		program->SetUniform("projection", &projection);
+		program->SetUniform("projection", projection);
 	}
 
 	void CameraComponent::ProcessGui()
