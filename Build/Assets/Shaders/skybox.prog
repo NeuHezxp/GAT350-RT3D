@@ -1,4 +1,4 @@
 {
-	"vertexShader": "shaders/lit_phong.vert",
-	"fragmentShader": "shaders/lit_phong.frag"
+	"vertexShader": "shaders/skybox.vert",
+	"fragmentShader": "shaders/cubemap.frag"
 }

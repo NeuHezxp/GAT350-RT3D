@@ -8,6 +8,5 @@ layout(binding = 0) uniform samplerCube cubemap;
 
 void main()
 {
-	
 	ocolor = texture(cubemap, ftexcoord);
 }
