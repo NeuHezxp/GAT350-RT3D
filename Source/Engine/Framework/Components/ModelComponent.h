@@ -1,6 +1,8 @@
 #pragma once
 #include "RenderComponent.h"
 #include "Renderer/Model.h"
+#include "Core/Core.h"
+
 
 namespace nc
 {
@@ -13,11 +15,11 @@ namespace nc
 		void Update(float dt) override;
 		void Draw(class Renderer& renderer) override;
 
-		//virtual float GetRadius() override { return m_model->GetRadius(); }
-
 	public:
 		std::string modelName;
 		std::string materialName;
 		res_t<Model> model;
+		bool enableDepth{ true };
+		GLint cullface = { GL_BACK };
 	};
 }

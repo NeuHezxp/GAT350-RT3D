@@ -5,9 +5,9 @@
 
 namespace nc
 {
+
 	void APIENTRY DebugCallback(GLenum source, GLenum type, GLuint id,
 		GLenum severity, GLsizei length, const GLchar* message, const void* param);
-	///Function Declaration ^
 
 	bool Renderer::Initialize()
 	{
@@ -21,6 +21,7 @@ namespace nc
 	void Renderer::Shutdown()
 	{
 		SDL_GL_DeleteContext(m_context);
+		SDL_DestroyRenderer(m_renderer);
 		SDL_DestroyWindow(m_window);
 		TTF_Quit();
 		IMG_Quit();
@@ -33,15 +34,12 @@ namespace nc
 
 		m_window = SDL_CreateWindow(title.c_str(), 100, 100, width, height, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE | SDL_WINDOW_OPENGL);
 
-		//Open GL stuff
 		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4);
 		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
-		//support old classic version
 		SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_COMPATIBILITY);
-		//vsync and double buffer
+
 		SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 		SDL_GL_SetAttribute(SDL_GL_ACCELERATED_VISUAL, 1);
-		//vsync swap to avoid tear
 		SDL_GL_SetSwapInterval(1);
 
 		m_context = SDL_GL_CreateContext(m_window);
@@ -49,20 +47,29 @@ namespace nc
 
 		glEnable(GL_DEBUG_OUTPUT);
 		glDebugMessageCallback(DebugCallback, 0);
+		// disable all messages with severity `GL_DEBUG_SEVERITY_NOTIFICATION`
+		glDebugMessageControl(
+			GL_DONT_CARE,
+			GL_DONT_CARE,
+			GL_DEBUG_SEVERITY_NOTIFICATION,
+			0, NULL,
+			GL_FALSE);
 
 		glViewport(0, 0, width, height);
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
 		glEnable(GL_DEPTH_TEST);
-		glDepthFunc(GL_LESS); // zBuffer 
+		glDepthFunc(GL_LESS);
 
 		glEnable(GL_CULL_FACE);
-		glCullFace(GL_BACK);
+		glCullFace(GL_FRONT);
 		glFrontFace(GL_CCW);
 	}
 
 	void Renderer::BeginFrame()
 	{
+		//SDL_RenderClear(m_renderer);
 		glClearColor(0, 0, 0, 1);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	}
@@ -70,6 +77,7 @@ namespace nc
 	void Renderer::EndFrame()
 	{
 		SDL_GL_SwapWindow(m_window);
+		//SDL_RenderPresent(m_renderer);
 	}
 
 	void Renderer::SetColor(uint8_t r, uint8_t g, uint8_t b, uint8_t a)
@@ -97,7 +105,6 @@ namespace nc
 		SDL_RenderDrawPointF(m_renderer, x, y);
 	}
 
-	
 	void APIENTRY DebugCallback(GLenum source, GLenum type, GLuint id,
 		GLenum severity, GLsizei length, const GLchar* message, const void* param) {
 

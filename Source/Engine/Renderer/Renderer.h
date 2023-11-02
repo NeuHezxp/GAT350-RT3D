@@ -3,10 +3,12 @@
 #include "Font.h"
 #include "Model.h"
 #include "Texture.h"
+#include "Cubemap.h"
 #include "Shader.h"
+#include "Program.h"
 #include "Gui.h"
 #include "VertexBuffer.h"
-#include "Program.h"
+#include "Material.h"
 
 #include <glad/include/glad/glad.h>
 #include <SDL2-2.28.4/include/SDL.h>
@@ -35,11 +37,9 @@ namespace nc
 		void DrawPoint(int x, int y);
 		void DrawPoint(float x, float y);
 
-
 		int GetWidth() const { return m_width; }
 		int GetHeight() const { return m_height; }
 
-		friend class Text;
 		friend class Texture;
 		friend class Gui;
 

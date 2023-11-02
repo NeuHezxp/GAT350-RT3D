@@ -55,7 +55,7 @@
     <ClInclude Include="Math\Rect.h">
       <Filter>Source\Math</Filter>
     </ClInclude>
-    <ClInclude Include="stringUtils.h">
+    <ClInclude Include="StringUtils.h">
       <Filter>Source</Filter>
     </ClInclude>
   </ItemGroup>
@@ -78,7 +78,7 @@
     <ClCompile Include="Math\Transform.cpp">
       <Filter>Source\Math</Filter>
     </ClCompile>
-    <ClCompile Include="stringUtil.cpp">
+    <ClCompile Include="StringUtils.cpp">
       <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>
