@@ -58,7 +58,9 @@ namespace nc
 
         //m_transform.rotation.z += 180 * dt;
 
-        auto actor = m_scene->GetActorByName<Actor>("ogre");
+       auto actor = m_scene->GetActorByName<Actor>("ogre");
+       
+
 
         actor->transform.position.x += ENGINE.GetSystem<InputSystem>()->GetKeyDown(SDL_SCANCODE_A) ? m_speed * -dt : 0;
         actor->transform.position.x += ENGINE.GetSystem<InputSystem>()->GetKeyDown(SDL_SCANCODE_D) ? m_speed * +dt : 0;
@@ -74,9 +76,15 @@ namespace nc
 
         material->GetProgram()->SetUniform("ambientLight", m_ambientLight);
 
-        // view matrix
-
-        // projectioon matrix
+       // material = GET_RESOURCE(Material, "materials/refraction.prog");
+        if(material)
+        {
+            ImGui::Begin("refraction");
+            ImGui::DragFloat("IOR", &m_refraction,.01f, 1 , 2);
+			auto program = material->GetProgram();
+			program->SetUniform("ior", m_refraction);
+            ImGui::End();
+        }
 
         ENGINE.GetSystem<Gui>()->EndFrame();
     }
@@ -86,7 +94,7 @@ namespace nc
         // pre-render
         renderer.BeginFrame();
         // render
-        //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); //shows grid
+        
         m_scene->Draw(renderer);
         ENGINE.GetSystem<Gui>()->Draw();
         // post-render

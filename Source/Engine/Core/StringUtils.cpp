@@ -28,6 +28,7 @@ namespace nc {
 			[](char a, char b) {
 				return tolower(a) == tolower(b);
 			});
+		
 	}
 	std::string StringUtils::CreateUnique(const std::string& str) const
 	{
