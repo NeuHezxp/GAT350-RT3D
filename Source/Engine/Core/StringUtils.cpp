@@ -11,7 +11,7 @@ namespace nc {
 		return result;
 	}
 
-	std::string StringUtils::ToLower(const std::string& input) const
+	std::string StringUtils::ToLower(const std::string& input)
 	//converts string to lowercase
 	{
 		std::string result = input;
@@ -30,7 +30,7 @@ namespace nc {
 			});
 		
 	}
-	std::string StringUtils::CreateUnique(const std::string& str) const
+	std::string StringUtils::CreateUnique(const std::string& str) 
 	{
 		static uint32_t unique = 0;
 
