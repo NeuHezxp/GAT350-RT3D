@@ -1,5 +1,5 @@
 {
-  "program": "shaders/reflection.prog",
+  "program": "shaders/refraction.prog",
   "cubemap": "forest_cubemap",
   "cubemaps": [
     "textures/forest_cubemap/posx.jpg",
