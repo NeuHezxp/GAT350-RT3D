@@ -51,6 +51,7 @@ namespace nc
 			params |= NORMAL_TEXTURE_MASK;
 			normalTexture = GET_RESOURCE(Texture, normalTextureName);
 		}
+
 		std::string cubemapName;
 		if (READ_NAME_DATA(document, "cubemap", cubemapName))
 		{
@@ -58,8 +59,10 @@ namespace nc
 			std::vector<std::string> cubemaps;
 			READ_DATA(document, cubemaps);
 
-			cubemapTexture = GET_RESOURCE(Cubemap, cubemapName,cubemaps);
+			cubemapTexture = GET_RESOURCE(Cubemap, cubemapName, cubemaps);
 		}
+
+
 
 		READ_DATA(document, albedo);
 		READ_DATA(document, specular);
@@ -104,7 +107,7 @@ namespace nc
 		}
 		if (cubemapTexture)
 		{
-			cubemapTexture->SetActive(GL_TEXTURE0);
+			cubemapTexture->SetActive(GL_TEXTURE4);
 			cubemapTexture->Bind();
 		}
 	}

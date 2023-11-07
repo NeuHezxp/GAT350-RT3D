@@ -23,6 +23,7 @@
 			"type": "Actor",
 			"name": "ogre",
 			"persistent": true,
+			"active":  false,
 			"transform": {
 				"position": [ 0, 0, 1 ],
 				"scale": [ 1, 1, 1 ],
@@ -40,6 +41,7 @@
 			"type": "Actor",
 			"name": "ogrerefract",
 			"persistent": true,
+			"active": false,
 			"transform": {
 				"position": [ 0, 0, 1 ],
 				"scale": [ 1, 1, 1 ],

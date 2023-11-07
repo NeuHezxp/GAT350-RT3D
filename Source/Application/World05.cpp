@@ -33,11 +33,18 @@ namespace nc
             auto actor = CREATE_CLASS(Actor);
             actor->name = "camera1";
             actor->transform.position = glm::vec3{ 0, 3, 10 };
-            actor->transform.rotation = glm::radians(glm::vec3{ 0, 10313.2, 0 });
+            actor->transform.rotation = glm::radians(glm::vec3{ 0, 180, 0 });
 
             auto cameraComponent = CREATE_CLASS(CameraComponent);
             cameraComponent->SetPerspective(70.0f, ENGINE.GetSystem<Renderer>()->GetWidth() / (float)ENGINE.GetSystem<Renderer>()->GetHeight(), 0.1f, 100.0f);
             actor->AddComponent(std::move(cameraComponent));
+
+            auto cameraController = CREATE_CLASS(CameraController);
+            cameraController->speed = 5;
+            cameraController->sensitivity = 0.5;
+            cameraController->m_owner = actor.get();
+            cameraController->Initialize();
+            actor->AddComponent(std::move(cameraController));
 
             m_scene->Add(std::move(actor));
         }
@@ -56,35 +63,40 @@ namespace nc
         m_scene->Update(dt);
         m_scene->ProcessGui();
 
+
+        auto actor = m_scene->GetActorByName<Actor>("ogre");
+        //m_scene->GetActorByName<Actor>("ogre2");
+        //m_scene->GetActorByName<Actor>("ogre3");
+
         //m_transform.rotation.z += 180 * dt;
 
-       auto actor = m_scene->GetActorByName<Actor>("ogre");
-       
+        //actor->transform.position.x += ENGINE.GetSystem<InputSystem>()->GetKeyDown(SDL_SCANCODE_A) ? m_speed * -dt : 0;
+        //actor->transform.position.x += ENGINE.GetSystem<InputSystem>()->GetKeyDown(SDL_SCANCODE_D) ? m_speed * +dt : 0;
+        //actor->transform.position.z += ENGINE.GetSystem<InputSystem>()->GetKeyDown(SDL_SCANCODE_W) ? m_speed * -dt : 0;
+        //actor->transform.position.z += ENGINE.GetSystem<InputSystem>()->GetKeyDown(SDL_SCANCODE_S) ? m_speed * +dt : 0;
 
 
-        actor->transform.position.x += ENGINE.GetSystem<InputSystem>()->GetKeyDown(SDL_SCANCODE_A) ? m_speed * -dt : 0;
-        actor->transform.position.x += ENGINE.GetSystem<InputSystem>()->GetKeyDown(SDL_SCANCODE_D) ? m_speed * +dt : 0;
-        actor->transform.position.z += ENGINE.GetSystem<InputSystem>()->GetKeyDown(SDL_SCANCODE_W) ? m_speed * -dt : 0;
-        actor->transform.position.z += ENGINE.GetSystem<InputSystem>()->GetKeyDown(SDL_SCANCODE_S) ? m_speed * +dt : 0;
-
-        m_time += dt;
-
-        auto material = actor->GetComponent<ModelComponent>()->model->GetMaterial();
+        auto material = actor->GetComponent<ModelComponent>()->material;
 
         material->ProcessGui();
         material->Bind();
 
-        material->GetProgram()->SetUniform("ambientLight", m_ambientLight);
-
-       // material = GET_RESOURCE(Material, "materials/refraction.prog");
-        if(material)
+        //material = GET_RESOURCE(Material, "materials/refraction.prog");
+        if (material)
         {
-            ImGui::Begin("refraction");
-            ImGui::DragFloat("IOR", &m_refraction,.01f, 1 , 2);
-			auto program = material->GetProgram();
-			program->SetUniform("ior", m_refraction);
+            ImGui::Begin("Refraction");
+
+            m_refraction = 1.0f + std::fabs(std::sin(m_time));
+
+            ImGui::DragFloat("IOR", &m_refraction, 0.01f, 1, 3);
+            auto program = material->GetProgram();
+            program->Use();
+            program->SetUniform("ior", m_refraction);
+
             ImGui::End();
         }
+
+        m_time += dt;
 
         ENGINE.GetSystem<Gui>()->EndFrame();
     }
@@ -94,10 +106,48 @@ namespace nc
         // pre-render
         renderer.BeginFrame();
         // render
-        
+        //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); //shows grid
         m_scene->Draw(renderer);
         ENGINE.GetSystem<Gui>()->Draw();
         // post-render
         renderer.EndFrame();
     }
 }
+
+//for the scene.json
+//{
+    //	"type": "Actor",
+    //	"name": "ogre2",
+    //	"persistent": true,
+    //	"transform": {
+    //		"position": [ 0, 0, 1 ],
+    //		"scale": [ 1, 1, 1 ],
+    //		"rotation": [ 0, 0, 0 ]
+    //	},
+    //	"components": [
+    //		{
+    //			"type": "ModelComponent",
+    //			"modelName": "models/ogre.obj",
+    //			"materialName": "Materials/reflection.mtrl",
+    //			"cullface": "back"
+    //		}
+    //	]
+    //},
+    //{
+    //	"type": "Actor",
+    //	"name": "ogre3",
+    //	"persistent": true,
+    //	"transform": {
+    //		"position": [ 0, 0, 1 ],
+    //		"scale": [ 1, 1, 1 ],
+    //		"rotation": [ 0, 0, 0 ]
+    //	},
+    //	"components": [
+    //		{
+    //			"type": "ModelComponent",
+    //			"modelName": "models/ogre.obj",
+    //			"materialName": "Materials/ogre.mtrl",
+    //			"cullface": "back"
+    //		}
+    //	]
+    //}
