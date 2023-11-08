@@ -5,9 +5,21 @@
 			"name": "skybox",
 			"persistent": true,
 			"transform": {
-				"position": [ 0, 0, 1 ],
-				"scale": [ 1, 1, 1 ],
-				"rotation": [ 0, 0, 0 ]
+				"position": [
+					0,
+					0,
+					1
+				],
+				"scale": [
+					1,
+					1,
+					1
+				],
+				"rotation": [
+					0,
+					0,
+					0
+				]
 			},
 			"components": [
 				{
@@ -23,11 +35,23 @@
 			"type": "Actor",
 			"name": "ogre",
 			"persistent": true,
-			"active":  false,
+			"active": false,
 			"transform": {
-				"position": [ 0, 0, 1 ],
-				"scale": [ 1, 1, 1 ],
-				"rotation": [ 0, 0, 0 ]
+				"position": [
+					0,
+					0,
+					1
+				],
+				"scale": [
+					1,
+					1,
+					1
+				],
+				"rotation": [
+					0,
+					0,
+					0
+				]
 			},
 			"components": [
 				{
@@ -43,9 +67,21 @@
 			"persistent": true,
 			"active": false,
 			"transform": {
-				"position": [ 0, 0, 1 ],
-				"scale": [ 1, 1, 1 ],
-				"rotation": [ 0, 0, 0 ]
+				"position": [
+					0,
+					0,
+					1
+				],
+				"scale": [
+					1,
+					1,
+					1
+				],
+				"rotation": [
+					0,
+					0,
+					0
+				]
 			},
 			"components": [
 				{
@@ -60,9 +96,21 @@
 			"name": "ogrephong",
 			"persistent": true,
 			"transform": {
-				"position": [ 0, 0, 1 ],
-				"scale": [ 1, 1, 1 ],
-				"rotation": [ 0, 0, 0 ]
+				"position": [
+					0,
+					0,
+					1
+				],
+				"scale": [
+					1,
+					1,
+					1
+				],
+				"rotation": [
+					0,
+					0,
+					0
+				]
 			},
 			"components": [
 				{
@@ -78,9 +126,21 @@
 			"persistent": true,
 			"active": true,
 			"transform": {
-				"position": [ -1, 0, 1 ],
-				"scale": [ 1, 1, 1 ],
-				"rotation": [ 0, 0, 0 ]
+				"position": [
+					-1,
+					0,
+					1
+				],
+				"scale": [
+					1,
+					1,
+					1
+				],
+				"rotation": [
+					0,
+					0,
+					0
+				]
 			},
 			"components": [
 				{
@@ -97,9 +157,21 @@
 			"active": true,
 			"prototype": true,
 			"transform": {
-				"position": [ 1, 0, 1 ],
-				"scale": [ 1, 1, 1 ],
-				"rotation": [ 0, 0, 0 ]
+				"position": [
+					1,
+					0,
+					1
+				],
+				"scale": [
+					1,
+					1,
+					1
+				],
+				"rotation": [
+					0,
+					0,
+					0
+				]
 			},
 			"components": [
 				{
@@ -108,6 +180,77 @@
 					"materialName": "materials/tree.mtrl"
 				}
 			]
-		}
+		},
+		{
+			"type": "Actor",
+			"name": "light",
+			"persistent": true,
+			"active": true,
+			"transform": {
+				"position": [
+					0,
+					0,
+					1
+				],
+				"scale": [
+					1,
+					1,
+					1
+				],
+				"rotation": [
+					0,
+					0,
+					0
+				]
+			},
+			"components": [
+				{
+					"type": "LightComponent",
+					"lightType": "Point",
+					"color": [
+						1,
+						1,
+						1
+					],
+					"intensity": 1,
+					"range": 20,
+					"innerAngle": 10,
+					"outerAngle": 30
+				}
+			]
+		},
+		{
+			"type": "Actor",
+			"name": "camera",
+			"persistent": true,
+			"active": true,
+			"transform": {
+				"position": [
+					0,
+					0,
+					1
+				],
+				"scale": [
+					1,
+					1,
+					1
+				],
+				"rotation": [
+					0,
+					0,
+					0
+				]
+			},
+			"components": [
+				{
+					"type": "CameraComponent",
+					"fov": 70,
+					"aspect": 0,
+					"near": 0.01,
+					"far": 100
+				}
+			]
+		},
+		
 	]
 }

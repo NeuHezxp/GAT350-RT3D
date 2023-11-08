@@ -15,22 +15,7 @@ namespace nc
         m_scene->Initialize();
 
         {
-            auto actor = CREATE_CLASS(Actor);
-            actor->name = "light1";
-            actor->transform.position = glm::vec3{ 3, 3, 3 };
-            auto lightComponent = CREATE_CLASS(LightComponent);
-            lightComponent->type = LightComponent::eType::Point;
-            lightComponent->color = glm::vec3{ 1, 1, 1 }; //glm::rgbColor(glm::vec3{ randomf() * 360, 1, 1 });
-            lightComponent->intensity = 1;
-            lightComponent->range = 20;
-            lightComponent->innerAngle = 10.0f;
-            lightComponent->outerAngle = 30.0f;
-            actor->AddComponent(std::move(lightComponent));
-            m_scene->Add(std::move(actor));
-        }
-
-        {
-            auto actor = CREATE_CLASS(Actor);
+           /* auto actor = CREATE_CLASS(Actor);
             actor->name = "camera1";
             actor->transform.position = glm::vec3{ 0, 3, 10 };
             actor->transform.rotation = glm::radians(glm::vec3{ 0, 180, 0 });
@@ -46,18 +31,18 @@ namespace nc
             cameraController->Initialize();
             actor->AddComponent(std::move(cameraController));
 
-            m_scene->Add(std::move(actor));
+            m_scene->Add(std::move(actor));*/
         }
-        for (int i = 0; i < 1; ++i)
-        {
-        auto actor = CREATE_CLASS_BASE(Actor, "tree");
-        actor->name = StringUtils::CreateUnique("tree");
-		actor->transform.position = glm::vec3{randomf(-10,10),0,randomf(-10,10) };
-		actor->transform.scale = glm::vec3{randomf(0.5f,3.0f),randomf(0.5f,3.0f),randomf(0.5f,3.0f) };
-        actor->Initialize();
-		m_scene->Add(std::move(actor)); //adds a tree actor that uses a prototype to spawn multiple trees "like a forest"
-	        
-        }
+  //      for (int i = 0; i < 1; ++i)
+  //      {
+  //      auto actor = CREATE_CLASS_BASE(Actor, "tree");
+  //      actor->name = StringUtils::CreateUnique("tree");
+		//actor->transform.position = glm::vec3{randomf(-10,10),0,randomf(-10,10) };
+		//actor->transform.scale = glm::vec3{randomf(0.5f,3.0f),randomf(0.5f,3.0f),randomf(0.5f,3.0f) };
+  //      actor->Initialize();
+		//m_scene->Add(std::move(actor)); //adds a tree actor that uses a prototype to spawn multiple trees "like a forest"
+	 //       
+  //      }
 
         return true;
     }
@@ -75,23 +60,13 @@ namespace nc
 
 
         auto actor = m_scene->GetActorByName<Actor>("ogre");
-        //m_scene->GetActorByName<Actor>("ogre2");
-        //m_scene->GetActorByName<Actor>("ogre3");
-
-        //m_transform.rotation.z += 180 * dt;
-
-        //actor->transform.position.x += ENGINE.GetSystem<InputSystem>()->GetKeyDown(SDL_SCANCODE_A) ? m_speed * -dt : 0;
-        //actor->transform.position.x += ENGINE.GetSystem<InputSystem>()->GetKeyDown(SDL_SCANCODE_D) ? m_speed * +dt : 0;
-        //actor->transform.position.z += ENGINE.GetSystem<InputSystem>()->GetKeyDown(SDL_SCANCODE_W) ? m_speed * -dt : 0;
-        //actor->transform.position.z += ENGINE.GetSystem<InputSystem>()->GetKeyDown(SDL_SCANCODE_S) ? m_speed * +dt : 0;
-
 
         auto material = actor->GetComponent<ModelComponent>()->material;
 
         material->ProcessGui();
         material->Bind();
 
-        //material = GET_RESOURCE(Material, "materials/refraction.prog");
+        material = GET_RESOURCE(Material, "materials/refraction.prog");
         if (material)
         {
             ImGui::Begin("Refraction");

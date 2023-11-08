@@ -59,6 +59,12 @@ namespace nc
 		program->SetUniform("view", view);
 		// set program uniform for "projection" with projection matrix
 		program->SetUniform("projection", projection);
+		/*program->SetUniform("fov", fov);
+		program->SetUniform("aspect", aspect);
+		program->SetUniform("near", near);
+		program->SetUniform("far", far);*/
+
+
 	}
 
 	void CameraComponent::ProcessGui()

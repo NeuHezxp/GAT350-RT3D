@@ -19,6 +19,8 @@
 #include "Components/CameraComponent.h"
 #include "Components/CameraController.h"
 
+#include "RotateComponent.h"
+
 #include "Factory.h"
 #include "Resource/ResourceManager.h"
 #include "Event/EventManager.h"
