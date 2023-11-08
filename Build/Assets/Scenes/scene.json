@@ -184,34 +184,16 @@
 		{
 			"type": "Actor",
 			"name": "light",
-			"persistent": true,
-			"active": true,
+			"persistant": true,
 			"transform": {
-				"position": [
-					0,
-					0,
-					1
-				],
-				"scale": [
-					1,
-					1,
-					1
-				],
-				"rotation": [
-					0,
-					0,
-					0
-				]
+				"position": [ 3, 3, 3 ],
+				"rotation": [ 0, 0, 0 ]
 			},
 			"components": [
 				{
 					"type": "LightComponent",
-					"lightType": "Point",
-					"color": [
-						1,
-						1,
-						1
-					],
+					"lightType": "point",
+					"color": [ 1, 1, 1 ],
 					"intensity": 1,
 					"range": 20,
 					"innerAngle": 10,
@@ -222,35 +204,25 @@
 		{
 			"type": "Actor",
 			"name": "camera",
-			"persistent": true,
-			"active": true,
+			"persistant": true,
 			"transform": {
-				"position": [
-					0,
-					0,
-					1
-				],
-				"scale": [
-					1,
-					1,
-					1
-				],
-				"rotation": [
-					0,
-					0,
-					0
-				]
+				"position": [ 0, 0.4, 4 ],
+				"rotation": [ 0, 180, 0 ]
 			},
 			"components": [
 				{
 					"type": "CameraComponent",
-					"fov": 70,
-					"aspect": 0,
-					"near": 0.01,
-					"far": 100
+					"fov": 70.0,
+					"near": 0.1,
+					"far": 100.0
+				},
+				{
+					"type": "CameraController",
+					"speed": 5.0,
+					"sensitivity": 1
 				}
 			]
-		},
-		
+		}
+
 	]
 }

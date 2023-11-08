@@ -67,14 +67,19 @@ namespace nc
 		glFrontFace(GL_CCW);
 	}
 
-	void Renderer::BeginFrame()
+	/*void Renderer::BeginFrame()
 	{
 		
 		glDepthMask(GL_TRUE);
 		glClearColor(0, 0, 0, 1);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	}*/
+	void Renderer::BeginFrame(const glm::vec3& color)
+	{
+		glDepthMask(GL_TRUE);
+		glClearColor(color.r, color.g, color.b, 1);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	}
-
 	void Renderer::EndFrame()
 	{
 		SDL_GL_SwapWindow(m_window);

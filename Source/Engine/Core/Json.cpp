@@ -22,7 +22,7 @@ namespace nc
 		document.ParseStream(istream);
 		if (!document.IsObject())
 		{
-			WARNING_LOG("Json file cannot be parsed: " << filename);
+			WARNING_LOG("Json file cannot be parsed: " << filename)
 			return false;
 		}
 

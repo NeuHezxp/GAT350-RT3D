@@ -5,6 +5,6 @@ INFO: Factory.h(75) Class registered: EnginePhysicsComponent
 INFO: Factory.h(75) Class registered: CameraController
 INFO: Factory.h(75) Class registered: CameraComponent
 INFO: Factory.h(75) Class registered: Actor
-INFO: Main.cpp(16) Initialize Engine...
-INFO: Factory.h(83) Prototype Class registered: tree
-ERROR: Factory.h(97) Class not found in Factory: actor
+INFO: Main.cpp(17) Initialize Engine...
+WARNING: Json.cpp(25) Json file cannot be parsed: Scenes/scene_framebuffer.json
+ERROR: Scene.cpp(108) Could not load scene file: Scenes/scene_framebuffer.json
