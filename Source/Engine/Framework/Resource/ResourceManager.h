@@ -5,6 +5,7 @@
 #include <memory>
 #include <string>
 #include <vector>
+#include <Core/stringUtils.h>
 #include "Core/Logger.h"
 
 #define GET_RESOURCE(type, filename, ...) nc::ResourceManager::Instance().Get<type>(filename, __VA_ARGS__)
@@ -33,21 +34,23 @@ namespace nc
 	template <typename T>
 	bool ResourceManager::Add(const std::string& name, res_t<T> resource)
 	{
-		if (m_resources.find(name) != m_resources.end())
+		std::string lname = StringUtils::ToLower(name);
+		if (m_resources.find(lname) != m_resources.end())
 		{
-			WARNING_LOG("Resource already exists: " << name);
+			WARNING_LOG("Resource already exists: " << lname);
 			return false;
 		}
 
-		m_resources[name] = resource;
+		m_resources[lname]= resource;
 		return false;
 	}
 
 	template<typename T, typename ...TArgs>
 	inline res_t<T> ResourceManager::Get(const std::string& filename, TArgs ...args)
 	{
+		std::string lfilename = StringUtils::ToLower(filename);
 		// find resource in resources map
-		if (m_resources.find(filename) != m_resources.end())
+		if (m_resources.find(lfilename) != m_resources.end())
 		{
 			// return resource
 			return std::dynamic_pointer_cast<T>(m_resources[filename]);
@@ -55,7 +58,7 @@ namespace nc
 
 		// resource not in resources map, create resource
 		res_t<T> resource = std::make_shared<T>();
-		if (!resource->Create(filename, args...))
+		if (!resource->Create(lfilename, args...))
 		{
 			// resource not created
 			WARNING_LOG("Could not create resource: " << filename);
@@ -64,7 +67,7 @@ namespace nc
 
 		// add resource to resource map, return resource
 		//m_resources[filename] = resource;
-		Add(filename, resource);
+		Add(lfilename, resource);
 		return resource;
 	}
 

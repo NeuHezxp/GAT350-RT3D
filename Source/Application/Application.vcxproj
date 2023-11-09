@@ -171,6 +171,7 @@
     <None Include="..\..\Build\Assets\materials\multi.mtrl" />
     <None Include="..\..\Build\Assets\materials\ogre.mtrl" />
     <None Include="..\..\Build\Assets\materials\phong.mtrl" />
+    <None Include="..\..\Build\Assets\materials\postprocess.mtrl" />
     <None Include="..\..\Build\Assets\materials\quad.mtrl" />
     <None Include="..\..\Build\Assets\materials\reflection.mtrl" />
     <None Include="..\..\Build\Assets\materials\refraction.mtrl" />
@@ -181,6 +182,9 @@
     <None Include="..\..\Build\Assets\Scenes\scene.json" />
     <None Include="..\..\Build\Assets\Scenes\scene_framebuffer.json" />
     <None Include="..\..\Build\Assets\Shaders\cubemap.frag" />
+    <None Include="..\..\Build\Assets\Shaders\postprocess.frag" />
+    <None Include="..\..\Build\Assets\Shaders\postprocess.prog" />
+    <None Include="..\..\Build\Assets\Shaders\postprocess.vert" />
     <None Include="..\..\Build\Assets\Shaders\reflection.prog" />
     <None Include="..\..\Build\Assets\Shaders\reflection.vert" />
     <None Include="..\..\Build\Assets\Shaders\refraction.prog" />

@@ -21,20 +21,15 @@
 		},
 		{
 			"type": "Actor",
-			"name": "cube",
+			"name": "postprocess",
 			"persistent": true,
 			"prototype":  false,
 			"active": true,
-			"transform": {
-				"position": [ 1, 0, 1 ],
-				"scale": [ 1, 1, 1 ],
-				"rotation": [ 0, 0, 0 ]
-			},
 			"components": [
 				{
 					"type": "ModelComponent",
-					"modelName": "models/cube.obj",
-					"materialName": "Materials/framebuffer.mtrl",
+					"modelName": "models/quad.obj",
+					"materialName": "Materials/postprocess.mtrl"
 				}
 			]
 		},
@@ -70,6 +65,7 @@
 				{
 					"type": "CameraComponent",
 					"fov": 70.0,
+					"aspect": 1,
 					"near": 0.1,
 					"far": 100.0
 				},
